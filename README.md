@@ -20,6 +20,7 @@
 都内に出かける際
 
 ## 設計書
+<img width="343" alt="DWC-PF ER図　スクショ" src="https://user-images.githubusercontent.com/87749004/136033618-11e04163-7456-430a-a2ef-068cbebaae8b.png">
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1LxJUSMTHkGQpNa-4XqkmzkvLc9eCTVf4XB-7Qh30T5I/edit?usp=sharing
