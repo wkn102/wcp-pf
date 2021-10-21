@@ -1,0 +1,36 @@
+<div class='container'>
+
+      <div class="row subtitle">
+   　  <h2 style="display: inline;"><stron>投稿詳細</strong></h2>
+  　   <h3><strong>観光地名『<%= @post.name %>』</strong></h3><h4>(ジャンル：『<%= @post.genre.name %>』)</h4>
+
+      <table class="row">
+       <!--投稿画像-->
+       <tr class="col-md-12">
+           <th class="col-md-5">
+                <%= attachment_image_tag @post, :image ,size: "400x200", fallback: "no_image.jpg", class: "rounded" %><br/>
+                投稿者：<%= @post.customer.nickname %> | 性別：<%= @post.customer.gender %> | 日付：<%= @post.updated_at.strftime('%Y/%m/%d')%> | <%=link_to '編集', edit_post_path, class: "btn btn-success" %>
+           </th>
+
+           <th class="col-md-5">
+            <h2></h2>
+            <%= @post.evaluation %><br/>
+            <%= @post.statement %><br/>
+            <% if @post.liked_by?(current_customer) %>
+            <p>
+              <%= link_to post_likes_path(@post), method: :delete do %>
+               役に立った❗️<%= @post.likes.count %>
+              <% end %>
+            </p>
+            <% else %>
+            <p>
+              <%= link_to post_likes_path(@post), method: :post do %>
+                役に立った❕<%= @post.likes.count %>
+              <% end %>
+            </p>
+            <% end %>
+           </th>
+       </tr>
+
+      </table>
+</div>

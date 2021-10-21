@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row subtitle">
+    <h3><span style="background-color:#dcdcdc">ジャンル編集</span></h3>
+  </div>
+
+  <div class="row">
+    <%= form_with model:@genre, url:admins_genre_path(@genre.id), local:true do |f| %>
+
+      <table class='table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th style="border:none;"><h6>ジャンル名</h6></th>
+            <th style="border:none;"><%= f.text_field :name %></th>
+            <th style="border:none;"><%= f.submit '変更を保存' ,class: 'btn btn-outline-success'%></th>
+          </tr>
+        </thead>
+      </table>
+
+    <% end %>
+  </div>
+</div>

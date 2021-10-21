@@ -1,0 +1,60 @@
+<div class='container'>
+
+  <p></p>
+
+　<% if flash[:success] %>
+	<div class="flash">
+  <%= flash[:success] %>
+  </div>
+	 <% end %>
+  <div class="row subtitle">
+    <h2 style="display: inline;"><strong>投稿一覧</strong></h2>
+  </div>
+
+  <p></p>
+
+  <div class="row">
+    <table class="table striped">
+      <thead>
+        <tr>
+          <th bgcolor="#EEEEEE">番号</th>
+          <th bgcolor="#EEEEEE">観光地名</th>
+          <!--<th bgcolor="#EEEEEE">ジャンル</th>-->
+          <th bgcolor="#EEEEEE">ニックネーム</th>
+          <th bgcolor="#EEEEEE">更新日</th>
+          <th bgcolor="#EEEEEE">お気に入り</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post|%>
+          <tr>
+            <td class="text-left"><%= link_to post.id, post_path(post) , class: "post_#{post.id}, link" %></td>
+            <td class="text-left" ><%= post.name %></td>
+            <!--<td class = "text-left">--><%#= posts.genre.name %>
+            <td class = "text-left"><%= post.customer.nickname %></td>
+            <td class = "text-left"><%= post.updated_at.strftime('%Y/%m/%d')%></td>
+            <td class = "text-left">
+            <% if post.favorited_by?(current_customer) %>
+            <p>
+              <%= link_to post_favorites_path(post), method: :delete do %>
+               お気に入り ♥<%= post.favorites.count %>
+              <% end %>
+            </p>
+            <% else %>
+            <p>
+              <%= link_to post_favorites_path(post), method: :post do %>
+                お気に入り♡<%= post.favorites.count %>
+              <% end %>
+            </p>
+            <% end %>
+            </td>
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+
+
+    <%#= paginate @posts %>
+
+</div>

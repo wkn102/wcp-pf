@@ -1,0 +1,47 @@
+<div class="container subtitle">
+  <div class="row">
+    <div class="col-lg-8" >
+
+      <% if @genre.errors.any? %>
+          <div class="row error_messages">
+          <strong><font color="red"><%= @genre.errors.count %>件のエラーが発生しました。<br></font></strong>
+        <% @genre.errors.full_messages.each do |message| %>
+          <font color="black">・<%= message %>。<br></font>
+        <% end %>
+          </div>
+      <% end %>
+
+      <table class='table table-hover table-inverse'>
+        <thead>
+          <tr style="border:none;">
+            <h3><strong style="display: inline;">ジャンル一覧・追加</strong></h3>
+
+            <%= form_with model:@genre, url:admins_genres_path, local:true do |f| %>
+              <th style="border:none;"><h6>ジャンル名</h6></th>
+              <th style="border:none;"><%= f.text_field :name , placeholder: "ジャンル名" %></th>
+              <th style="border:none;"><%= f.submit '新規登録' ,class: 'btn btn-outline-primary'%></th>
+            <% end %>
+          </tr>
+        </thead>
+      </table>
+
+      <div class = "row">
+        <div class = "col-6">
+          <table class='table table-hover table-inverse'>
+            <tbody>
+              <tr bgcolor="#dcdcdc"><td><h5>ジャンル</h5></tr>
+                <% @genres.each do |genre| %>
+                  <tr>
+                    <td><%= genre.name %></td>
+                    <td><%= link_to "編集する", edit_admins_genre_path(genre.id) ,class: 'btn btn-outline-primary' %></td>
+                  </tr>
+                <% end %>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
