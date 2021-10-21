@@ -9,7 +9,7 @@
        <tr class="col-md-12">
            <th class="col-md-5">
                 <%= attachment_image_tag @post, :image ,size: "400x200", fallback: "no_image.jpg", class: "rounded" %><br/>
-                投稿者：<%= @post.customer.nickname %> | 性別：<%= @post.customer.gender %> | 日付：<%= @post.updated_at.strftime('%Y/%m/%d')%> | <%=link_to '編集', edit_post_path, class: "btn btn-success" %>
+                投稿者：<%= link_to @post.customer.nickname, user_path(@post.customer) %> | 性別：<%= @post.customer.gender %> | 日付：<%= @post.updated_at.strftime('%Y/%m/%d')%> | <%=link_to '編集', edit_post_path, class: "btn btn-success" %>
            </th>
 
            <th class="col-md-5">

@@ -10,7 +10,12 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
- enum gender: { man: 1, woman: 2, other: 3}
+ enum gender: { 男性: 1, 女性: 2, その他: 3}
+
+ # 退会機能
+  def active_for_authentication?
+    super && (self.is_deleted == false)
+  end
 
 has_many :relationships,class_name: "Relationship",  foreign_key: "follower_id",dependent: :destroy
 has_many :passive_relationships,class_name: "Relationship", foreign_key: "followed_id",dependent: :destroy

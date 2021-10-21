@@ -18,6 +18,15 @@ class Customers::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  def reject_inactive_customer
+  @cusomer = Customer.find_by(name: params[:customer][:name])
+    if @user
+      if @customer.valid_password?(params[:cusomer][:password]) && !@cusomer.is_deleted
+        redirect_to new_registration_path(resource_name)
+      end
+    end
+  end
+
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.

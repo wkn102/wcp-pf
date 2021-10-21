@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 2021_10_20_120640) do
     t.integer "following_id"
     t.integer "followed_id"
   end
-
+s
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

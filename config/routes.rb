@@ -13,6 +13,8 @@ namespace :admins do
   resources :genres,only: [:index,:create,:edit,:update]
   resources :locations,only: [:index,:create,:edit,:update]
 
+  root to: 'users#top'
+
 end
 
 
@@ -25,9 +27,9 @@ devise_for :customers, controllers: {
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 scope module: :customers do
 
-  resources :users,only: [:show,:new,:edit,:update] do
-      get 'users/quit'=>'users#quit'
-      get 'users/out'=>'users#out'
+  resources :users,only: [:index, :sshow,:new,:edit,:update] do
+      get 'quit'=>'users#quit'
+      get 'out'=>'users#out'
       resource :relationships, only: [:create, :destroy]
        get 'relationships/followers' => 'relationships#followers', as: 'followers'
        get 'relationships/followings' => 'relationships#followings', as: 'followings'
@@ -44,6 +46,10 @@ scope module: :customers do
      get	'about' => 'likes#about'
 
   post "posts/:id/destroy" => "posts#destroy"
+
+  devise_scope :user do
+    get '/customers/sign_out' => 'devise/sessions#destroy'
+  end
 end
 
 end

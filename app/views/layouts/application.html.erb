@@ -1,14 +1,212 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DwcPortfolio</title>
+    <title>GOTOKYO!</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+  <wrapper>
+    <body>
+      <header class="header">
+        <nav class="navbar navbar-expend-lg navbar-light" >
+          <div class="container">
+
+            <div class="navbar-brand">
+              <%#= link_to root_path, class:"nav-link" do %>
+                <%#= image_tag "short_cake.png" %>
+                <strong class="header-logo text-dark">GO<i class="fas fa-plane"></i>TOKYO</strong>
+              <%# end %>
+            </div>
+
+            <ul class="list-group-horizontal navbar-nav ml-auto">
+
+              <!--管理者がログインしている場合-->
+              <% if admin_signed_in? %>
+
+                <div class="row align-items-center">
+                  <nav-item>
+                      <li>
+                        <strong class="text-muted mb-0 nav-link">管理者ログイン中</strong>
+                      </li>
+                  </nav-item>
+
+                  <nav-item>
+                    <%= link_to about_path do %>
+                        <i class="fas fa-birthday-cake nav-link text-black">
+                          <strong>About</strong></strong>
+                        </i>
+                    <% end %>
+                  </nav-item>
+
+                  <nav-item>
+                    <%= link_to admins_users_path do %>
+                        <i class="fas fa-users nav-link text-black">
+                          <strong>会員一覧</strong>
+                        </i>
+                    <% end %>
+                  </nav-item>
+
+                  <nav-item>
+                    <%= link_to admins_genres_path do %>
+                        <i class="fas fa-tags nav-link text-black">
+                          <strong>ジャンル一覧</strong>
+                        </i>
+                    <% end %>
+                  </nav-item>
+
+                  <nav-item>
+                    <%= link_to destroy_admin_session_path, method: :delete do %>
+                        <i class="fas fa-sign-out-alt nav-link text-black">
+                          <strong>ログアウト</strong>
+                        </i>
+                    <% end %>
+                  </nav-item>
+
+                  <nav-item>
+                      <div class="d-flex justify-content-end">
+                        <% if admin_signed_in? %>
+                          <%= render 'admin/searches/form' %>
+                        <% else %>
+                          <%= render 'customer/searches/form' %>
+                        <% end %>
+                      </div>
+                  </nav-item>
+                </div>
+
+              <!--ユーザーがログインしている場合-->
+              <% elsif customer_signed_in? %>
+
+                <div class="row align-items-center">
+                  <nav-item>
+                      <li>
+                        <strong class="text-muted mb-0 nav-link">ようこそ、<%= current_customer.name %>さん！</strong>
+                      </li>
+                  </nav-item>
+
+                  <nav-item>
+                    <%= link_to user_path(current_customer) do %>
+                        <i class="fas fa-home nav-link text-black">
+                          <strong>マイページ</strong>
+                        </i>
+                    <% end %>
+                  </nav-item>
+
+                  <nav-item>
+                    <%= link_to new_post_path do %>
+                        <i class="fas fa-edit nav-link text-black">
+                          <strong>投稿フォーム</strong>
+                        </i>
+                    <% end %>
+                  </nav-item>
+
+                  <nav-item>
+                    <%= link_to root_path do %>
+                        <i class="fas fa-medal nav-link text-black">
+                          <strong>ランキング</strong>
+                        </i>
+                    <% end %>
+                  </nav-item>
+
+                  <nav-item>
+                    <%= link_to posts_path do %>
+                        <i class="fas fa-clone nav-link text-black">
+                          <strong>投稿一覧</strong>
+                        </i>
+                    <% end %>
+                  </nav-item>
+
+                  <nav-item>
+                    <%= link_to customers_sign_out_path, method: :delete do %>
+                        <i class="fas fa-sign-out-alt nav-link text-black">
+                          <strong>ログアウト</strong>
+                        </i>
+                    <% end %>
+                  </nav-item>
+
+                  <!--検索窓
+                  <nav-item>
+                      <div class="d-flex justify-content-end">
+                        <%# if admin_signed_in? %>
+                          <%#= render 'admin/searches/form' %>
+                        <%# else %>
+                          <%#= render 'customer/searches/form' %>
+                        <%# end %>
+                      </div>
+                  </nav-item>-->
+                </div>
+
+              <!--いずれもログインしていない場合-->
+              <% else %>
+
+                <div class="row align-items-center">
+                  <nav-item>
+                    <%= link_to about_path do %>
+                        <i class="fas fa-info-circle nav-link text-black">
+                          <strong>About</strong>
+                        </i>
+                    <% end %>
+                  </nav-item>
+
+                  <nav-item>
+                    <%= link_to new_customer_registration_path do %>
+                        <i class="fas fa-user-alt nav-link text-black">
+                          <strong>新規会員登録</strong>
+                        </i>
+                    <% end %>
+                  </nav-item>
+
+                  <nav-item>
+                    <%= link_to new_customer_session_path do %>
+                        <i class="fas fa-sign-in-alt nav-link text-black">
+                          <strong>ログイン</strong>
+                        </i>
+                    <% end %>
+                  </nav-item>
+
+                  <nav-item>
+                    <%= link_to root_path do %>
+                        <i class="fas fa-medal nav-link text-black">
+                          <strong>ランキング</strong>
+                        </i>
+                    <% end %>
+                  </nav-item>
+
+                  <!--検索窓-->
+                  <!--nav-item>
+                      <div class="d-flex justify-content-end">
+                        <%# if admin_signed_in? %>
+                          <%#= render 'admin/searches/form' %>
+                        <%# else %>
+                          <%#= render 'customer/searches/form' %>
+                        <%# end %>
+                      </div>
+                  </nav-item-->
+                </div>
+
+              <% end %>
+
+            </ul>
+          </div>
+        </nav>
+      </header>
+
+      <main>
+        <%= yield %>
+      </main>
+
+      <footer class="footer text-black align-items-center d-flex justify-content-center">
+        　<span>© All rights reserved by Wakana</span>
+          <div class="justify-content-center align-items-center social-items">
+            <i class="fab fa-facebook-square fa-2x text-black"></i>
+            <i class="fab fa-twitter-square fa-2x text-black"></i>
+            <i class="fab fa-instagram fa-2x text-black"></i>
+            <i class="fas fa-envelope fa-2x text-black"></i>
+          </div>
+      </footer>
+
+    </body>
+  </wrapper>
 </html>

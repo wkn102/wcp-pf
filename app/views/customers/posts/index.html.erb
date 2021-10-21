@@ -37,7 +37,7 @@
             <% if post.favorited_by?(current_customer) %>
             <p>
               <%= link_to post_favorites_path(post), method: :delete do %>
-               お気に入り ♥<%= post.favorites.count %>
+               お気に入り ♥<%= post.favorites.scount %>
               <% end %>
             </p>
             <% else %>
@@ -55,6 +55,6 @@
   </div>
 
 
-    <%#= paginate @posts %>
+    <%= paginate @posts %>
 
 </div>

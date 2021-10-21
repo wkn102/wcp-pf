@@ -1,0 +1,49 @@
+ <div class='container'>
+ <div class="row subtitle">
+    <h2 style="display: inline;"><strong>ユーザー一覧</strong></h2>
+  </div>
+
+  <p></p>
+
+  <div class="row">
+    <table class="table striped">
+      <thead>
+        <tr>
+          <th bgcolor="#EEEEEE">番号</th>
+          <th bgcolor="#EEEEEE"></th>
+          <th bgcolor="#EEEEEE">ニックネーム</th>
+          <th bgcolor="#EEEEEE">性別</th>
+          <th bgcolor="#EEEEEE">フォロー数</th>
+          <th bgcolor="#EEEEEE">フォロワー数</th>
+          <th bgcolor="#EEEEEE"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer|%>
+          <tr>
+            <td class="text-left"><%= customer.id %></td>
+            <td class="text-left" ><%= customer.name %></td>
+            <td class = "text-left"><%= customer.nickname %></td>
+            <td class = "text-left"><%= customer.gender %></td>
+            <td class = "text-left"><%= customer.followings.count %></td>
+            <td class = "text-left"><%= customer.followers.count %></td>
+            <td class = "text-left">
+              <% unless current_customer == customer %>
+                <% if current_customer.following?(customer) %>
+                  <%= link_to "フォロー外す", relationship_path(customer.id), method: :delete %>
+                <% else %>
+                  <%= link_to "フォローする", relationships_path(customer.id), method: :post %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+
+
+    <%= paginate @customers %>
+
+</div>
+</div>

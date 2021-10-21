@@ -1,4 +1,7 @@
-<h2>Log in</h2>
+<div class="container">
+  <div class="row subtitle">
+    <h2>Log in<i class="fas fa-user-alt"></i></h2>
+  </div>
 
 <%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
   <div class="field">
@@ -37,5 +40,5 @@
   <div class="row form-for-resistration">
       <p><%= link_to "こちら", new_customer_password_path %><span>にお願いします。</span></p>
   </div>
-
+</div>
 

@@ -1,15 +1,11 @@
-<% provide(:title, "マイページ") %>
 <div class="container">
 
 	  <div class="row subtitle">
 			<h2 class="head-line text-center title_h2 subtitle row">マイページ編集</h2>
-			<h4><strong class="information-link fas fa-book">登録情報編集</strong></h4>
+		</div>
 
 			 <%= form_with model: @customer, url:user_path(@customer), local:true do |f| %>
 
-
-
-  <div class="row form-for-resistration">
    <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true %>
@@ -26,12 +22,13 @@
   </div>
 
   <div class="field">
-   <%= f.label :gender, :man %>
-  <%= f.radio_button :gender, 1 %>
+  Gender:
+  <%= f.label :gender, :man %>
+  <%= f.radio_button :gender, "男性" %>
   <%= f.label :gender, :woman %>
-  <%= f.radio_button :gender, 2 %>
+  <%= f.radio_button :gender, "女性" %>
   <%= f.label :gender, :other %>
-  <%= f.radio_button :gender, 3 %>
+  <%= f.radio_button :gender, "その他" %>
 　</div>
 
   <div class="field">
@@ -47,11 +44,13 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <p></p>
+
   <div class="actions">
-    <%= f.submit "編集保存" %>
+    <%= f.submit "編集保存", class: "btn btn-outline-info nav-link save col-2" %>
+    <p></p>
+    <%= link_to "退会する", user_quit_path(@customer), class: "btn btn-outline-danger nav-link col-2" %>
   </div>
   <% end %>
 
-  </div>
-  </div>
 </div>

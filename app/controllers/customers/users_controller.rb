@@ -1,12 +1,18 @@
 class Customers::UsersController < ApplicationController
 
+  def index
+    @customers = Customer.page(params[:page]).per(10)
+    @customer = current_customer
+  end
+
   def show
     @customer = current_customer
+    @post = Post.find(params[:id])
     @posts = Post.all
   end
 
   def edit
-    @customer = Customer.find_by(params[:id])
+    @customer = Customer.find(params[:id])
   end
 
   def update
@@ -19,10 +25,25 @@ class Customers::UsersController < ApplicationController
   end
   end
 
+  def quit
+    @customer = current_customer
+  end
+
+  def out
+    @customer = current_customer
+    @customer.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
+  end
+
   private
 
   def customer_params
    params.require(:customer).permit(:email, :name, :encrypted_password, :image, :is_deleted, :nickname, :gender)
   end
+ end
 
-end
+
+
+
+
