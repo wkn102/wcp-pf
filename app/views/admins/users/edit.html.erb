@@ -1,10 +1,10 @@
 <div class="container">
 
 	  <div class="row subtitle">
-			<h2 class="head-line text-center title_h2 subtitle row">マイページ編集</h2>
+			<h2 class="head-line text-center title_h2 subtitle row"><i class="fas fa-user-friends"></i>会員情報編集</h2>
 		</div>
 
-			 <%= form_with model: @customer, url:user_path(@customer), local:true do |f| %>
+			 <%= form_with model: @customer, url:admins_user_path(@customer), local:true do |f| %>
 
    <div class="field">
     <%= f.label :name %><br />
@@ -17,19 +17,27 @@
   </div>
 
   <div class="field">
+    Gender:
+    <%= f.label :gender, :man %>
+    <%= f.radio_button :gender, "男性" %>
+    <%= f.label :gender, :woman %>
+    <%= f.radio_button :gender, "女性" %>
+    <%= f.label :gender, :other %>
+    <%= f.radio_button :gender, "その他" %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-  Gender:
-  <%= f.label :gender, :man %>
-  <%= f.radio_button :gender, "男性" %>
-  <%= f.label :gender, :woman %>
-  <%= f.radio_button :gender, "女性" %>
-  <%= f.label :gender, :other %>
-  <%= f.radio_button :gender, "その他" %>
- </div>
+    <%= f.label :"members_status", class: "col-sm-4 control-label" %><br/>
+  　<%= f.radio_button :is_deleted, false %>
+  　<%= f.label :is_deleted, "有効", {value: :false, style: "display: inline-block;"} %>
+  　<%= f.radio_button :is_deleted, true %>
+  　<%= f.label :is_deleted, "退会", {value: :true, style: "display: inline-block;"} %>
+  </div>
 
   <div class="field">
     <%= f.label :password %>
@@ -48,8 +56,6 @@
 
   <div class="actions">
     <%= f.submit "編集保存", class: "btn btn-outline-info nav-link save col-2" %>
-    <p></p>
-    <%= link_to "退会する", user_quit_path(@customer), class: "btn btn-outline-danger nav-link col-2" %>
   </div>
   <% end %>
 

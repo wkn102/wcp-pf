@@ -1,1 +1,42 @@
-<h2>ランキング</h2>
+<div class='container'>
+
+  <div class="row subtitle">
+    <h2 style="display: inline;"><i class="fas fa-medal"></i>投稿ランキング</h2>
+  </div>
+
+  <p></p>
+
+  <div class="row">
+    <table class="table striped">
+      <thead>
+        <tr>
+          <th bgcolor="#EEEEEE">順位</th>
+          <th bgcolor="#EEEEEE">観光地名</th>
+          <th bgcolor="#EEEEEE">ジャンル</th>
+          <th bgcolor="#EEEEEE">ニックネーム</th>
+          <th bgcolor="#EEEEEE">更新日</th>
+          <th bgcolor="#EEEEEE">お気に入り数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each_with_index do |post,n| %>
+          <tr>
+            <td>
+              　<span><%= n+1 %></span>
+            <!--td class="text-left"><%#= link_to post.id, post_path(post) , class: "btn btn-info" %></td-->
+            </td>
+            <td class="text-left" ><%= link_to post.name, post_path(post) %></td>
+            <td class = "text-left"><%= post.genre.name %>
+            <td class = "text-left"><%= post.customer.nickname %></td>
+            <td class = "text-left"><%= post.updated_at.strftime('%Y/%m/%d')%></td>
+            <td class = "text-left"><%= post.favorites.count %></td>
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+
+
+    <%#= paginate @posts %>
+
+</div>

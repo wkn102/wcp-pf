@@ -15,13 +15,13 @@
           <th bgcolor="#EEEEEE">性別</th>
           <th bgcolor="#EEEEEE">フォロー数</th>
           <th bgcolor="#EEEEEE">フォロワー数</th>
-          <th bgcolor="#EEEEEE"></th>
+          <th bgcolor="#EEEEEE">フォローボタン</th>
         </tr>
       </thead>
       <tbody>
         <% @customers.each do |customer|%>
           <tr>
-            <td class="text-left"><%= customer.id %></td>
+            <td class="text-left"><%=link_to customer.id, user_path(customer) %></td>
             <td class="text-left" ><%= customer.name %></td>
             <td class = "text-left"><%= customer.nickname %></td>
             <td class = "text-left"><%= customer.gender %></td>
@@ -30,9 +30,9 @@
             <td class = "text-left">
               <% unless current_customer == customer %>
                 <% if current_customer.following?(customer) %>
-                  <%= link_to "フォロー外す", relationship_path(customer.id), method: :delete %>
+                  <%= link_to "フォロー外す", relationship_path(customer.id), class: "btn btn-info", method: :delete %>
                 <% else %>
-                  <%= link_to "フォローする", relationships_path(customer.id), method: :post %>
+                  <%= link_to "フォローする", relationships_path(customer.id), class: "btn btn-outline-info", method: :post %>
                 <% end %>
               <% end %>
             </td>

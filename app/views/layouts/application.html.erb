@@ -15,10 +15,10 @@
           <div class="container">
 
             <div class="navbar-brand">
-              <%#= link_to root_path, class:"nav-link" do %>
+              <%= link_to root_path, class:"nav-link" do %>
                 <%#= image_tag "short_cake.png" %>
                 <strong class="header-logo text-dark">GO<i class="fas fa-plane"></i>TOKYO</strong>
-              <%# end %>
+              <%end %>
             </div>
 
             <ul class="list-group-horizontal navbar-nav ml-auto">
@@ -34,7 +34,7 @@
                   </nav-item>
 
                   <nav-item>
-                    <%= link_to about_path do %>
+                    <%= link_to root_path do %>
                         <i class="fas fa-birthday-cake nav-link text-black">
                           <strong>About</strong></strong>
                         </i>
@@ -42,7 +42,7 @@
                   </nav-item>
 
                   <nav-item>
-                    <%= link_to admins_users_path do %>
+                    <%= link_to admins_top_path do %>
                         <i class="fas fa-users nav-link text-black">
                           <strong>会員一覧</strong>
                         </i>
@@ -103,9 +103,9 @@
                   </nav-item>
 
                   <nav-item>
-                    <%= link_to root_path do %>
+                    <%= link_to top_path do %>
                         <i class="fas fa-medal nav-link text-black">
-                          <strong>ランキング</strong>
+                          <strong>投稿ランキング</strong>
                         </i>
                     <% end %>
                   </nav-item>
@@ -143,7 +143,7 @@
 
                 <div class="row align-items-center">
                   <nav-item>
-                    <%= link_to about_path do %>
+                    <%= link_to root_path do %>
                         <i class="fas fa-info-circle nav-link text-black">
                           <strong>About</strong>
                         </i>
@@ -152,7 +152,7 @@
 
                   <nav-item>
                     <%= link_to new_customer_registration_path do %>
-                        <i class="fas fa-user-alt nav-link text-black">
+                        <i class="fas fa-user-plus nav-link text-black">
                           <strong>新規会員登録</strong>
                         </i>
                     <% end %>
@@ -166,13 +166,13 @@
                     <% end %>
                   </nav-item>
 
-                  <nav-item>
-                    <%= link_to root_path do %>
+                  <!--nav-item>
+                    <%#= link_to root_path do %>
                         <i class="fas fa-medal nav-link text-black">
                           <strong>ランキング</strong>
                         </i>
-                    <% end %>
-                  </nav-item>
+                    <%# end %>
+                  </nav-item-->
 
                   <!--検索窓-->
                   <!--nav-item>

@@ -4,6 +4,7 @@ class Customer < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :post
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -19,8 +20,12 @@ class Customer < ApplicationRecord
 
 has_many :relationships,class_name: "Relationship",  foreign_key: "follower_id",dependent: :destroy
 has_many :passive_relationships,class_name: "Relationship", foreign_key: "followed_id",dependent: :destroy
-has_many :followings, through: :relationships,source: :followed
-has_many :followers, through: :passive_relationships,source: :follower
+has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+has_many :followers, through: :reverse_of_relationships, source: :follower
+  # 被フォロー関係を通じて参照→followed_idをフォローしている人
+has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  # 【class_name: "Relationship"】は省略可能
+has_many :followings, through: :relationships, source: :followed
 
 def follow(customer_id)
     unless self == customer_id

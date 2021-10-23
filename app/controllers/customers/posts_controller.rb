@@ -1,15 +1,15 @@
 class Customers::PostsController < ApplicationController
 
-  def index
-   @posts = Post.page(params[:page]).per(10)
-  end
+ def index
+  @posts = Post.page(params[:page]).per(10)
+ end
 
-  def new
-    @post = Post.new
-    @customer = Customer.new
-  end
+ def new
+  @post = Post.new
+  @customer = Customer.new
+ end
 
-  def create
+ def create
   @post = Post.new(post_params)
   @post.customer_id = current_customer.id
   if @post.save
@@ -22,11 +22,11 @@ class Customers::PostsController < ApplicationController
 
  def show
   @post = Post.find(params[:id])
-  @customer = Customer.new
+  @customer = @post.customer
  end
 
  def edit
-  @post = Post.find_by(params[:id])
+  @post = Post.find(params[:id])
  end
 
  def update
@@ -39,11 +39,11 @@ class Customers::PostsController < ApplicationController
   end
  end
 
-def destroy
- @post = Post.find_by(id: params[:id])
- @post.destroy
- redirect_to posts_path
-end
+ def destroy
+  @post = Post.find_by(id: params[:id])
+  @post.destroy
+  redirect_to posts_path
+ end
 
  private
 
@@ -51,4 +51,4 @@ end
    params.require(:post).permit(:image, :name, :customer_id, :genre_id, :location_id, :statement, :evaluation, :address)
   end
 
-end
+ end

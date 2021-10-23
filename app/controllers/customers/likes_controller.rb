@@ -1,6 +1,7 @@
 class Customers::LikesController < ApplicationController
 
   def top
+     @posts = Post.ranking
   end
 
   def about

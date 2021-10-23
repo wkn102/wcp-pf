@@ -6,9 +6,8 @@ class Customers::UsersController < ApplicationController
   end
 
   def show
-    @customer = current_customer
-    @post = Post.find(params[:id])
-    @posts = Post.all
+    @customer = Customer.find(params[:id])
+    @posts = @customer.posts.page(params[:page]).per(10)
   end
 
   def edit
@@ -18,7 +17,7 @@ class Customers::UsersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
   if @customer.update(customer_params)
-   flash[:success] = "投稿内容を変更しました!"
+   flash[:success] = "内容を変更しました!"
    redirect_to user_path(@customer)
   else
    render :edit

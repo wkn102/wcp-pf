@@ -8,7 +8,7 @@ devise_for :admins, controllers: {
 }
 namespace :admins do
 
-  resources :users,only: [:index,:show,:edit,:update]
+  resources :users,only: [:show,:edit,:update]
       get 'top'=>'users#top'
   resources :genres,only: [:index,:create,:edit,:update]
   resources :locations,only: [:index,:create,:edit,:update]
@@ -27,13 +27,13 @@ devise_for :customers, controllers: {
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 scope module: :customers do
 
-  resources :users,only: [:index, :sshow,:new,:edit,:update] do
+  resources :users,only: [:index, :show, :new, :edit, :update] do
+    resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
       get 'quit'=>'users#quit'
       get 'out'=>'users#out'
-      resource :relationships, only: [:create, :destroy]
-       get 'relationships/followers' => 'relationships#followers', as: 'followers'
-       get 'relationships/followings' => 'relationships#followings', as: 'followings'
-    end
+  end
   resources :genres,only: [:index]
   resources :locations,only: [:index]
   resources :relationships,only: [:index,:create,:destroy]
@@ -42,8 +42,8 @@ scope module: :customers do
         resource :likes,only: [:create, :destroy]
   end
 
-   root to: 'likes#top'
-     get	'about' => 'likes#about'
+   root to: 'likes#about'
+     get	'top' => 'likes#top'
 
   post "posts/:id/destroy" => "posts#destroy"
 
