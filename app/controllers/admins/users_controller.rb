@@ -6,7 +6,6 @@ class Admins::UsersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @post = Post.find(params[:id])
     @posts = @customer.posts.page(params[:page]).per(10)
   end
 

@@ -2,13 +2,11 @@
 　　<h2 class="head-line text-center title_h2 subtitle row"><i class="fas fa-clone"></i>投稿詳細</h2>
 	  <div class="row subtitle">
 
-      <div class ="col-md-7">
-      	<h4 class="head-line text-center title_h4 subtitle row">観光地名:『<%= @post.name %>』</h4>
-
-      <table class="row">
+      <table class="row post">
        <!--投稿画像-->
        <tr class="col-md-12">
            <th class="col-md-5">
+                <h4>観光地名:『<%= @post.name %>』</h4>
                 <%= attachment_image_tag @post, :image ,size: "400x200", fallback: "no_image.jpg", class: "rounded" %><br/>
                 <p></p><br/>
                 投稿者：<%= link_to @post.customer.nickname, user_path(@post.customer) %> | 性別：<%= @post.customer.gender %> | 日付：<%= @post.updated_at.strftime('%Y/%m/%d')%><br/>
@@ -35,6 +33,7 @@
             </div>
             <% end %>
             ジャンル:<%= @post.genre.name %><br/>
+            場所:<%= @post.location.name %><br/>
             観光案内文：<br/>
             <%= @post.statement %><br/>
             <% if @post.liked_by?(current_customer) %>
@@ -55,6 +54,7 @@
             <% end %>
            </th>
        </tr>
-
       </table>
+      </div>
+    </div>
 </div>

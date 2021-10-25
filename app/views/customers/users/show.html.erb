@@ -66,12 +66,12 @@
 			 <% end %>
 			 <td>
 			  <% unless current_customer == @customer %>
-			   <% if current_customer.following?(current_customer) %>
-			     <%= link_to "フォロー外す", relationship_path(@customer.id), class: "btn btn-info", method: :delete %>
-			   <% else %>
-			     <%= link_to "フォロー", relationships_path(@customer.id), class: "btn btn-info", method: :POST %>
-			   <% end %>
-			  <% end %>
+        <% if current_customer.following?(@customer) %>
+          <%= link_to "フォロー外す", user_relationships_path(@customer.id), class: "btn btn-info", method: :delete %>
+        <% else %>
+          <%= link_to "フォローする", user_relationships_path(@customer.id), class: "btn btn-outline-info", method: :post %>
+        <% end %>
+        <% end %>
        </td>
 
         <p></p>

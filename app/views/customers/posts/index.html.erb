@@ -9,8 +9,13 @@
 	 <% end %>
   <div class="row subtitle">
     <h2 style="display: inline;"><i class="fas fa-clone"></i>投稿一覧</h2>
+    <p></p>
+      <div class="right">
+        <%=link_to new_post_path, class: "btn btn-outline-secondary new_product" do %>
+        <i class="fas fa-plus"></i>
+        <% end %>
+      </div>
   </div>
-
   <p></p>
 
   <div class="row">
@@ -18,9 +23,13 @@
     <div class="blog-item">
           <div class="blog-image"><%= attachment_image_tag post, :image ,size: "300x150", fallback: "no_image.jpg", class: "rounded" %></div>
           <section class="blog-text">
-            <h3 class="blog-text-heading"><%=  link_to post.name, post_path(post)  %></h3>
-            <p class="blog-date"><%= link_to post.customer.nickname, user_path(post.customer) %></p>
-            <span class="category"><%= post.genre.name %></span>
+            <h4 class="blog-text-heading">『<%=  link_to post.name, post_path(post)  %>』</h4>
+            <span class="category">ジャンル:<%= post.genre.name %>
+              <% if post.location.present? %>
+                /場所:<%= post.location.name %>
+              <% end %>
+            </span>
+            <p class="blog-name">投稿者:<%= link_to post.customer.nickname, user_path(post.customer) %> / <%= post.customer.gender %></p>
             <% if post.favorited_by?(current_customer) %>
             <p>
               <%= link_to post_favorites_path(post), class: "btn btn-outline-info", method: :delete do %>

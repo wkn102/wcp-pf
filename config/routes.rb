@@ -36,11 +36,13 @@ scope module: :customers do
   end
   resources :genres,only: [:index]
   resources :locations,only: [:index]
-  resources :relationships,only: [:index,:create,:destroy]
+  resources :relationships,only: [:index]
   resources :posts do
         resource :favorites, only: [:create, :destroy]
         resource :likes,only: [:create, :destroy]
   end
+
+  get '/search' => 'search#search'
 
    root to: 'likes#about'
      get	'top' => 'likes#top'

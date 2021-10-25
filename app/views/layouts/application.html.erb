@@ -58,6 +58,14 @@
                   </nav-item>
 
                   <nav-item>
+                    <%= link_to admins_locations_path do %>
+                        <i class="fas fa-tags nav-link text-black">
+                          <strong>場所一覧</strong>
+                        </i>
+                    <% end %>
+                  </nav-item>
+
+                  <nav-item>
                     <%= link_to destroy_admin_session_path, method: :delete do %>
                         <i class="fas fa-sign-out-alt nav-link text-black">
                           <strong>ログアウト</strong>
@@ -65,16 +73,16 @@
                     <% end %>
                   </nav-item>
 
-                  <nav-item>
+                  <!--nav-item>
                       <div class="d-flex justify-content-end">
-                        <% if admin_signed_in? %>
-                          <%= render 'admin/searches/form' %>
-                        <% else %>
-                          <%= render 'customer/searches/form' %>
-                        <% end %>
+                        <%# if admin_signed_in? %>
+                          <%#= render 'admin/searches/form' %>
+                        <%# else %>
+                          <%#= render 'customer/searches/form' %>
+                        <%# end %>
                       </div>
                   </nav-item>
-                </div>
+                </div-->
 
               <!--ユーザーがログインしている場合-->
               <% elsif customer_signed_in? %>

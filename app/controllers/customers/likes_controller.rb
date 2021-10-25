@@ -2,6 +2,7 @@ class Customers::LikesController < ApplicationController
 
   def top
      @posts = Post.ranking
+     @genres = Genre.all
   end
 
   def about

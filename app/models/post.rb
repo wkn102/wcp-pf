@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_customers, through: :likes, source: :customer
   belongs_to :genre
+  belongs_to :location
 
   scope :ranking, -> { left_joins(:favorites).group("posts.id").select("posts.*, COUNT(favorites.id) AS favorite_count").order("favorite_count desc") }
 

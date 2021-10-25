@@ -2,16 +2,13 @@
 
   <p></p>
 
-　<% if flash[:success] %>
-	<div class="flash">
-  <%= flash[:success] %>
+  <% if @datas.empty? %>
+  <div class="comment">
+    <h2>該当する投稿はありません<i class="far fa-sad-tear"></i></h2>
   </div>
-	 <% end %>
+  <% else %>
   <div class="row">
-    <h3 style="display: inline;">ジャンル一覧</h3>
-  </div>
-  <p></p>
-  <div class='row'>
+    <h3 style="display: inline;"><i class="fas fa-search-plus"></i>検索結果</h3>
       <div class="right">
         <%=link_to new_post_path, class: "btn btn-outline-secondary new_product" do %>
         <i class="fas fa-plus"></i>
@@ -33,23 +30,23 @@
         </tr>
       </thead>
       <tbody>
-        <% @posts.each do |post|%>
+        <% @datas.each do |data| %>
           <tr>
-            <td class="text-left" ><%= post.name %></td>
-            <td class = "text-left"><%= post.genre.name %></td>
-            <td class = "text-left"><%= post.customer.nickname %></td>
-            <td class = "text-left"><%= post.updated_at.strftime('%Y/%m/%d')%></td>
+            <td class="text-left" ><%=link_to data.name, post_path(data) %></td>
+            <td class = "text-left"><%= data.genre.name %></td>
+            <td class = "text-left"><%= data.customer.nickname %></td>
+            <td class = "text-left"><%= data.updated_at.strftime('%Y/%m/%d')%></td>
             <td class = "text-left">
-            <% if post.liked_by?(current_customer) %>
+            <% if data.liked_by?(current_customer) %>
             <p>
-              <%= link_to post_likes_path(post), method: :delete do %>
-               役に立った ♥<%= post.likes.count %>
+              <%= link_to post_likes_path(data), method: :delete do %>
+               役に立った ♥<%= data.likes.count %>
               <% end %>
             </p>
             <% else %>
             <p>
-              <%= link_to post_likes_path(post), method: :post do %>
-                役に立った♡<%= post.likes.count %>
+              <%= link_to post_likes_path(data), method: :post do %>
+                役に立った♡<%= data.likes.count %>
               <% end %>
             </p>
             <% end %>
@@ -59,7 +56,18 @@
       </tbody>
     </table>
   </div>
-
-    <%= paginate @posts %>
+  <% end %>
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
