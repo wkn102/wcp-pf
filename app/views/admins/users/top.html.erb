@@ -1,0 +1,45 @@
+<div class='container'>
+ <div class="row subtitle">
+    <h2 style="display: inline;"><i class="fas fa-user-friends"></i>ユーザー一覧</h2>
+  </div>
+
+  <p></p>
+
+  <div class="row">
+    <table class="table striped">
+      <thead>
+        <tr>
+          <th bgcolor="#EEEEEE">番号</th>
+          <th bgcolor="#EEEEEE"></th>
+          <th bgcolor="#EEEEEE">ニックネーム</th>
+          <th bgcolor="#EEEEEE">性別</th>
+          <th bgcolor="EEEEEE">Eメール</th>
+          <th bgcolor="EEEEEE">退会ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer|%>
+          <tr>
+            <td class="text-left"><%=link_to customer.id, admins_user_path(customer) %></td>
+            <td class="text-left" ><%= customer.name %></td>
+            <td class = "text-left"><%= customer.nickname %></td>
+            <td class = "text-left"><%= customer.gender %></td>
+            <td class = "text-left"><%= customer.email %></td>
+            <td class = "text-left">
+                <% if customer.is_deleted == true %>
+                  <strong class="text-info">退会</strong>
+	              <% else %>
+	                <strong class="text-info">有効</strong>
+	              <% end %>
+							</td>
+            </td>
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+
+<%= paginate @customers %>
+
+</div>
+</div>

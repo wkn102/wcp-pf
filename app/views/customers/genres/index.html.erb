@@ -1,0 +1,65 @@
+<div class='container'>
+
+  <p></p>
+
+　<% if flash[:success] %>
+	<div class="flash">
+  <%= flash[:success] %>
+  </div>
+	 <% end %>
+  <div class="row">
+    <h3 style="display: inline;">ジャンル一覧</h3>
+  </div>
+  <p></p>
+  <div class='row'>
+      <div class="right">
+        <%=link_to new_post_path, class: "btn btn-outline-secondary new_product" do %>
+        <i class="fas fa-plus"></i>
+        <% end %>
+      </div>
+  </div>
+
+  <p></p>
+
+  <div class="row">
+    <table class="table striped">
+      <thead>
+        <tr>
+          <th bgcolor="#EEEEEE">観光地名</th>
+          <th bgcolor="#EEEEEE">ジャンル</th>
+          <th bgcolor="#EEEEEE">ニックネーム</th>
+          <th bgcolor="#EEEEEE">更新日</th>
+          <th bgcolor="#EEEEEE"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post|%>
+          <tr>
+            <td class="text-left" ><%= post.name %></td>
+            <td class = "text-left"><%= post.genre.name %></td>
+            <td class = "text-left"><%= post.customer.nickname %></td>
+            <td class = "text-left"><%= post.updated_at.strftime('%Y/%m/%d')%></td>
+            <td class = "text-left">
+            <% if post.liked_by?(current_customer) %>
+            <p>
+              <%= link_to post_likes_path(post), method: :delete do %>
+               役に立った ♥<%= post.likes.count %>
+              <% end %>
+            </p>
+            <% else %>
+            <p>
+              <%= link_to post_likes_path(post), method: :post do %>
+                役に立った♡<%= post.likes.count %>
+              <% end %>
+            </p>
+            <% end %>
+            </td>
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+
+    <%= paginate @posts %>
+
+</div>

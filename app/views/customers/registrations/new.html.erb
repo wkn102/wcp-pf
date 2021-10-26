@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row subtitle">
+    <h2><i class="fas fa-user-alt"></i>Sign up</h2>
+  </div>
+
+<%= form_with model: @customer, url: customer_registration_path, local: true do |f| %>
+  <%= render "customers/shared/error_messages", resource: resource %>
+
+   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nickname %><br />
+    <%= f.text_field :nickname, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    Gender:
+    <%= f.label :gender, :man %>
+    <%= f.radio_button :gender, " 男性" %>
+    <%= f.label :gender, :woman %>
+    <%= f.radio_button :gender, "女性" %>
+    <%= f.label :gender, :other %>
+    <%= f.radio_button :gender, "その他" %>
+　</div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <p></p>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+
+  <div class="row form-for-resistration subtitle">
+    <h4>既に登録済みの方</h4>
+  </div>
+  <div class="row form-for-resistration">
+    <p><%= link_to "こちら", new_customer_session_path %>からログインしてください。</p>
+  </div>
+<% end %>
+</div>
+
+
+

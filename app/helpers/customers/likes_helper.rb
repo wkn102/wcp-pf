@@ -1,0 +1,2 @@
+module Customers::LikesHelper
+end

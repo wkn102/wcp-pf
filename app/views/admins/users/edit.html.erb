@@ -1,0 +1,62 @@
+<div class="container">
+
+	  <div class="row subtitle">
+			<h2 class="head-line text-center title_h2 subtitle row"><i class="fas fa-user-friends"></i>会員情報編集</h2>
+		</div>
+
+			 <%= form_with model: @customer, url:admins_user_path(@customer), local:true do |f| %>
+
+   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nickname %><br />
+    <%= f.text_field :nickname, autofocus: true %>
+  </div>
+
+  <div class="field">
+    Gender:
+    <%= f.label :gender, :man %>
+    <%= f.radio_button :gender, "男性" %>
+    <%= f.label :gender, :woman %>
+    <%= f.radio_button :gender, "女性" %>
+    <%= f.label :gender, :other %>
+    <%= f.radio_button :gender, "その他" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"members_status", class: "col-sm-4 control-label" %><br/>
+  　<%= f.radio_button :is_deleted, false %>
+  　<%= f.label :is_deleted, "有効", {value: :false, style: "display: inline-block;"} %>
+  　<%= f.radio_button :is_deleted, true %>
+  　<%= f.label :is_deleted, "退会", {value: :true, style: "display: inline-block;"} %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <p></p>
+
+  <div class="actions">
+    <%= f.submit "編集保存", class: "btn btn-outline-info nav-link save col-2" %>
+  </div>
+  <% end %>
+
+</div>

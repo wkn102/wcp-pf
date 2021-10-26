@@ -1,0 +1,60 @@
+<div class="container">
+　　<h2 class="head-line text-center title_h2 subtitle row"><i class="fas fa-clone"></i>投稿詳細</h2>
+	  <div class="row subtitle">
+
+      <table class="row post">
+       <!--投稿画像-->
+       <tr class="col-md-12">
+           <th class="col-md-5">
+                <h4>観光地名:『<%= @post.name %>』</h4>
+                <%= attachment_image_tag @post, :image ,size: "400x200", fallback: "no_image.jpg", class: "rounded" %><br/>
+                <p></p><br/>
+                投稿者：<%= link_to @post.customer.nickname, user_path(@post.customer) %> | 性別：<%= @post.customer.gender %> | 日付：<%= @post.updated_at.strftime('%Y/%m/%d')%><br/>
+           </th>
+
+           <th class="col-md-7">
+            <h2></h2>
+            <%= form_with model: @post, local: true do |f| %>
+            <div class="relative-post-evaluation">
+              <span>評価：</span>
+              <span id="star-rate-<%= @post.id %>"></span>
+              <script>
+                $('#star-rate-<%= @post.id %>').raty({
+                  size: 36,
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  half: true,   # 星半分表示
+                  readOnly: true,   //読み取り専用
+                  score: <%= @post.evaluation %>,   //星評価の表示
+                });
+              </script>
+              <%= @post.evaluation %>
+            </div>
+            <% end %>
+            ジャンル:<%= @post.genre.name %><br/>
+            場所:<%= @post.location.name %><br/>
+            観光案内文：<br/>
+            <%= @post.statement %><br/>
+            <% if @post.liked_by?(current_customer) %>
+            <p>
+              <%= link_to post_likes_path(@post), method: :delete do %>
+               役に立った❗️<%= @post.likes.count %>
+              <% end %>
+            </p>
+            <% else %>
+            <p>
+              <%= link_to post_likes_path(@post), method: :post do %>
+                役に立った❕<%= @post.likes.count %>
+              <% end %>
+            </p>
+            <% end %>
+            <% if @customer.id == current_customer.id %>
+              <%=link_to '編集', edit_post_path, class: "btn btn-outline-info" %>
+            <% end %>
+           </th>
+       </tr>
+      </table>
+      </div>
+    </div>
+</div>

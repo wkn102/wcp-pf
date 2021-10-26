@@ -1,0 +1,106 @@
+<div class="container">
+  <h2 class="head-line text-center title_h2 subtitle row"><i class="fas fa-home"></i>マイページ</h2>
+	  <div class="row subtitle">
+
+      <div class ="col-md-7">
+      	<h4 class="head-line text-center title_h4 subtitle row">登録情報</h4>
+
+			<table class="table table-bordered table-condensed" >
+					<tbody>
+
+            <% if current_customer == @customer %>
+						<tr>
+							<td bgcolor="#EEEEEE",class="info"><strong>氏名</strong></td>
+							<td class="text-left"><%= @customer.name %></td>
+						</tr>
+						<% end %>
+
+						<tr>
+							<td bgcolor="#EEEEEE",class="info"><strong>ニックネーム</strong></td>
+							<td class="text-left"><%= @customer.nickname %></td>
+						</tr>
+
+						<tr>
+							<td bgcolor="#EEEEEE",class="info"><strong>性別</strong></td>
+							<td class="text-left"><%= @customer.gender %></td>
+						</tr>
+
+                        <% if current_customer == @customer %>
+						<tr>
+							<td bgcolor="#EEEEEE",class="info"><strong>Eメール</strong></td>
+							<td class="text-left"><%= @customer.email %></td>
+						</tr>
+						<% end %>
+
+						<tr>
+							<td bgcolor="#EEEEEE",class="info"><strong>退会フラグ</strong></td>
+							<td class="text-left">
+								<% if @customer.is_deleted == true %>
+				                  <strong class="text-info">退会</strong>
+					            <% else %>
+					              <strong class="text-info">有効</strong>
+					            <% end %>
+							</td>
+						</tr>
+
+						<tr>
+							<td bgcolor="#EEEEEE",class="info"><strong>お気に入り数</strong></td>
+							<td class="text-left"><%= @customer.favorites.count %></td>
+						</tr>
+
+						<tr>
+							<td bgcolor="#EEEEEE",class="info"><strong>フォロー数</strong></td>
+							<td class="text-left"><%= @customer.followings.count %></td>
+						</tr>
+
+						<tr>
+							<td bgcolor="#EEEEEE",class="info"><strong>フォロワー数</strong></td>
+							<td class="text-left"><%= @customer.followers.count %></td>
+						</tr>
+
+					</tbody>
+			</table><br/>
+			 <% if @customer.id == current_customer.id %>
+				<%=link_to '編集', edit_user_path, class: "btn btn-outline-info" %>
+				<%=link_to "ユーザー一覧", users_path, class: "btn btn-outline-secondary" %>
+			 <% end %>
+			 <td>
+			  <% unless current_customer == @customer %>
+        <% if current_customer.following?(@customer) %>
+          <%= link_to "フォロー外す", user_relationships_path(@customer.id), class: "btn btn-info", method: :delete %>
+        <% else %>
+          <%= link_to "フォローする", user_relationships_path(@customer.id), class: "btn btn-outline-info", method: :post %>
+        <% end %>
+        <% end %>
+       </td>
+
+        <p></p>
+
+			</div><br/>
+
+      <div class="col-md-5">
+    	<h4 class="head-line text-center title_h4 subtitle row">投稿一覧</h4>
+		<table class="table striped">
+      <thead>
+        <tr>
+          <th bgcolor="#EEEEEE">観光地名</th>
+          <th bgcolor="#EEEEEE">ジャンル</th>
+          <th bgcolor="#EEEEEE">更新日</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post|%>
+          <tr>
+            <td class="text-left" ><%= link_to post.name, post_path(post) %></td>
+            <td class = "text-left"><%= post.genre.name %>
+            <td class = "text-left"><%= post.updated_at.strftime('%Y/%m/%d')%></td>
+          </tr>
+         <% end %>
+      </tbody>
+		</table>
+		 <%= paginate @posts %>
+    </div>
+		</div>
+  </div>
+	</div>
+</div>
