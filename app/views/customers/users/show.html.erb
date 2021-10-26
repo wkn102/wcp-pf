@@ -8,7 +8,7 @@
 			<table class="table table-bordered table-condensed" >
 					<tbody>
 
-                        <% if current_customer == @customer %>
+            <% if current_customer == @customer %>
 						<tr>
 							<td bgcolor="#EEEEEE",class="info"><strong>氏名</strong></td>
 							<td class="text-left"><%= @customer.name %></td>
@@ -98,6 +98,7 @@
          <% end %>
       </tbody>
 		</table>
+		 <%= paginate @posts %>
     </div>
 		</div>
   </div>

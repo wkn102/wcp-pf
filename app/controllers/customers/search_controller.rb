@@ -15,15 +15,17 @@ class Customers::SearchController < ApplicationController
   end
 
   def forward(value)
-    Customer.where("nickname LIKE ?", "#{value}%")
+    target_customer_id = Customer.find_by(nickname: value)&.id
+    Post.where(customer_id: target_customer_id)
+  end
+
+  def backward(value)
+    target_genre_id = Genre.find_by(name: value)&.id
+    Post.where(genre_id: target_genre_id)
   end
 
   def partical(value)
     Post.where("name LIKE ?", "#{value}%")
-  end
-
-  def backward(value)
-    Genre.where("name LIKE ?", "#{value}%")
   end
 
 

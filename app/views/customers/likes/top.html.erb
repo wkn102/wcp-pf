@@ -3,11 +3,11 @@
   <div class="row subtitle">
     <div class="col-2">
       <% if customer_signed_in? %>                        <!--deviseのヘルパーメソッドです、省いても問題ありません。-->
-        <h5><i class="fas fa-search-plus"></i>商品名検索</h5>
+        <h5><i class="fas fa-search-plus"></i>投稿検索</h5>
         <%= form_with url: search_path, method: :get, local: true do |f| %>
           <%= f.text_field 'search[value]', size: "18x3" %><br>
           <span class="search-button col-xs-12 text-right">
-            <%= f.select 'search[how]', options_for_select({ "観光地" => "partical", "投稿者" => "forward", "ジャンル" => "backward", "場所" => "match" }) %>
+            <%= f.select 'search[how]', options_for_select({ "観光地" => "partical", "投稿者" => "forward", "ジャンル" => "backward", "観光地" => "match" }) %>
             <%= f.submit :"検索" %>
           </span>
         <% end %>
@@ -31,6 +31,8 @@
       </table>
     </div>
 
+    <div class='col-1'></div>
+   
     <div class="col-9">
     <h2 style="display: inline;"><i class="fas fa-medal"></i>投稿ランキング</h2>
     <p></p>
@@ -47,10 +49,26 @@
         </tr>
       </thead>
       <tbody>
-        <% @posts.each_with_index do |post,n| %>
+        <% @posts.each.with_index(1) do |post,n| %>
           <tr>
             <td>
-              　<span><%= n+1 %></span>
+               <!--同率順位表示-->
+                <% last_favorite = 0 %>
+                <% j = 1 %>
+                  <!--最初の値をlast_likeに保存-->
+                  <% if n == 1 %>
+                    <% last_favorite = post.favorites.count %>
+                  <% end %>
+                  <!--last_likeといいね数比べて同じなら同じ順位、違うなら次の順位表示-->
+                  <% if post.favorites.count != last_favorite %>
+                    <% j = n %>
+                    第<%= j %>位
+                    <% last_favprite = post.favorites.count %>
+                  <% else %>
+                    <% last_favorite = post.favorites.count %>
+                    第<%= j %>位
+                  <% end %>
+              <%#= n+1 %>
             <!--td class="text-left"><%#= link_to post.id, post_path(post) , class: "btn btn-info" %></td-->
             </td>
             <td class="text-left" ><%= link_to post.name, post_path(post) %></td>
@@ -62,6 +80,7 @@
           <% end %>
       </tbody>
       </table>
+      <%#= paginate @posts %>
      </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 class Customers::LikesController < ApplicationController
 
   def top
-     @posts = Post.ranking
+     @posts = Post.ranking  #page(params[:page]).per(5)
      @genres = Genre.all
   end
 

@@ -9,7 +9,7 @@ class Customers::RelationshipsController < ApplicationController
     current_customer.unfollow(params[:user_id])
     redirect_to request.referer
   end
-  
+
   def followings
     customer = Customer.find(params[:customer_id])
     @customers = customer.followings
