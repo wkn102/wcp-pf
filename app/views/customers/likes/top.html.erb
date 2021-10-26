@@ -32,8 +32,8 @@
     </div>
 
     <div class='col-1'></div>
-   
-    <div class="col-9">
+
+    <div class="col-md-9">
     <h2 style="display: inline;"><i class="fas fa-medal"></i>投稿ランキング</h2>
     <p></p>
     <table class="table striped">
@@ -49,30 +49,23 @@
         </tr>
       </thead>
       <tbody>
-        <% @posts.each.with_index(1) do |post,n| %>
+        <% tmp_favorite_count = 0 %>
+        <% rank = 1 %>
+        <% @posts.each.with_index(1) do |post, i| %>
           <tr>
             <td>
                <!--同率順位表示-->
-                <% last_favorite = 0 %>
-                <% j = 1 %>
-                  <!--最初の値をlast_likeに保存-->
-                  <% if n == 1 %>
-                    <% last_favorite = post.favorites.count %>
-                  <% end %>
-                  <!--last_likeといいね数比べて同じなら同じ順位、違うなら次の順位表示-->
-                  <% if post.favorites.count != last_favorite %>
-                    <% j = n %>
-                    第<%= j %>位
-                    <% last_favprite = post.favorites.count %>
-                  <% else %>
-                    <% last_favorite = post.favorites.count %>
-                    第<%= j %>位
-                  <% end %>
-              <%#= n+1 %>
+                <% if post.favorites.count == tmp_favorite_count %>
+                  第<%= rank %>位
+                <% else %>
+                  <% rank = i %>
+                  第<%= rank %>位
+                <% end %>
+                <% tmp_favorite_count = post.favorites.count %>
             <!--td class="text-left"><%#= link_to post.id, post_path(post) , class: "btn btn-info" %></td-->
             </td>
             <td class="text-left" ><%= link_to post.name, post_path(post) %></td>
-            <td class = "text-left"><%= post.genre.name %>
+            <td class = "text-left"><%= post.genre.name %></td>
             <td class = "text-left"><%= post.customer.nickname %></td>
             <td class = "text-left"><%= post.updated_at.strftime('%Y/%m/%d')%></td>
             <td class = "text-left"><%= post.favorites.count %></td>

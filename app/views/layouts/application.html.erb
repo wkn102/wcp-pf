@@ -26,51 +26,50 @@
               <% if admin_signed_in? %>
 
                 <div class="row align-items-center">
-                  <nav-item>
-                      <li>
+                      <li class="nav-item">
                         <strong class="text-muted mb-0 nav-link">管理者ログイン中</strong>
                       </li>
-                  </nav-item>
 
-                  <nav-item>
+
+                  <li class="nav-item">
                     <%= link_to root_path do %>
                         <i class="fas fa-birthday-cake nav-link text-black">
                           <strong>About</strong></strong>
                         </i>
                     <% end %>
-                  </nav-item>
+                  </li>
 
-                  <nav-item>
+                  <li class="nav-item">
                     <%= link_to admins_top_path do %>
                         <i class="fas fa-users nav-link text-black">
                           <strong>会員一覧</strong>
                         </i>
                     <% end %>
-                  </nav-item>
+                  </li>
 
-                  <nav-item>
+                  <li class="nav-item">
                     <%= link_to admins_genres_path do %>
                         <i class="fas fa-tags nav-link text-black">
                           <strong>ジャンル一覧</strong>
                         </i>
                     <% end %>
-                  </nav-item>
+                  </li>
 
-                  <nav-item>
+                  <li class="nav-item">
                     <%= link_to admins_locations_path do %>
                         <i class="fas fa-tags nav-link text-black">
                           <strong>場所一覧</strong>
                         </i>
                     <% end %>
-                  </nav-item>
+                  </li>
 
-                  <nav-item>
+                  <li class="nav-item">
                     <%= link_to destroy_admin_session_path, method: :delete do %>
                         <i class="fas fa-sign-out-alt nav-link text-black">
                           <strong>ログアウト</strong>
                         </i>
                     <% end %>
-                  </nav-item>
+                  </li>
 
                   <!--nav-item>
                       <div class="d-flex justify-content-end">
@@ -87,51 +86,51 @@
               <% elsif customer_signed_in? %>
 
                 <div class="row align-items-center">
-                  <nav-item>
+                  <li class="nav-item">
                       <li>
                         <strong class="text-muted mb-0 nav-link">ようこそ、<%= current_customer.name %>さん！</strong>
                       </li>
-                  </nav-item>
+                  </li>
 
-                   <nav-item>
+                   <li class="nav-item">
                     <%= link_to top_path do %>
                         <i class="fas fa-medal nav-link text-black">
                           <strong>投稿ランキング</strong>
                         </i>
                     <% end %>
-                  </nav-item>
+                  </li>
 
-                  <nav-item>
+                  <li class="nav-item">
                     <%= link_to new_post_path do %>
                         <i class="fas fa-edit nav-link text-black">
                           <strong>投稿フォーム</strong>
                         </i>
                     <% end %>
-                  </nav-item>
+                  </li>
 
-                  <nav-item>
+                  <li class="nav-item">
                     <%= link_to posts_path do %>
                         <i class="fas fa-clone nav-link text-black">
                           <strong>投稿一覧</strong>
                         </i>
                     <% end %>
-                  </nav-item>
+                  </li>
 
-                  <nav-item>
+                  <li class="nav-item">
                     <%= link_to user_path(current_customer) do %>
                         <i class="fas fa-home nav-link text-black">
                           <strong>マイページ</strong>
                         </i>
                     <% end %>
-                  </nav-item>
+                  </li>
 
-                  <nav-item>
+                  <li class="nav-item">
                     <%= link_to customers_sign_out_path, method: :delete do %>
                         <i class="fas fa-sign-out-alt nav-link text-black">
                           <strong>ログアウト</strong>
                         </i>
                     <% end %>
-                  </nav-item>
+                  </li>
 
                   <!--検索窓
                   <nav-item>
@@ -149,29 +148,29 @@
               <% else %>
 
                 <div class="row align-items-center">
-                  <nav-item>
+                  <li class="nav-item">
                     <%= link_to root_path do %>
                         <i class="fas fa-info-circle nav-link text-black">
                           <strong>About</strong>
                         </i>
                     <% end %>
-                  </nav-item>
+                  </li>
 
-                  <nav-item>
+                  <li class="nav-item">
                     <%= link_to new_customer_registration_path do %>
                         <i class="fas fa-user-plus nav-link text-black">
                           <strong>新規会員登録</strong>
                         </i>
                     <% end %>
-                  </nav-item>
+                  </li>
 
-                  <nav-item>
+                  <li class="nav-item">
                     <%= link_to new_customer_session_path do %>
                         <i class="fas fa-sign-in-alt nav-link text-black">
                           <strong>ログイン</strong>
                         </i>
                     <% end %>
-                  </nav-item>
+                  </li>
                 </div>
               <% end %>
               </ul>
@@ -179,7 +178,7 @@
         </nav>
       </header>
 
-　　　<!-- main-visual用のdiv -->
+    <!-- main-visual用のdiv -->
     <div class="main-visual">
       <div class="main-visual-content">
         <p class="main-visual-text">
@@ -188,13 +187,13 @@
       </div>
     </div>
 
-      <main>
+      <main class="mt-3">
         <%= yield %>
       </main>
 
-    <wrapper>
+    <div class="wrapper">
       <footer class="footer text-black align-items-center d-flex justify-content-center">
-        　<span>© All rights reserved by Wakana</span>
+          <span>© All rights reserved by Wakana</span>
           <div class="justify-content-center align-items-center social-items">
             <i class="fab fa-facebook-square fa-2x text-black"></i>
             <i class="fab fa-twitter-square fa-2x text-black"></i>
@@ -202,7 +201,7 @@
             <i class="fas fa-envelope fa-2x text-black"></i>
           </div>
       </footer>
+    </div>
 
-    </body>
-    </wrapper>
+  </body>
 </html>
