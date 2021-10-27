@@ -17,18 +17,19 @@
         </tr>
       </thead>
       <tbody>
-        <% @posts.each do |post|%>
+        <% @customer.favorites.each do |favorite|%>
+        <!--customerのお気にいりでeach文-->
           <tr>
-            <td class="text-left"><%=link_to post.name, post_path(post) %></td>
-            <td class="text-left" ><%= post.genre %></td>
-            <td class = "text-left"><%= post.location %></td>
-            <td class = "text-left"><%= post.customer.nickname %></td>
-            <td class = "text-left"><%= post.customer.gender %></td>
+            <td class="text-left"><%=link_to favorite.post.name, post_path(favorite.post) %></td>
+            <td class="text-left" ><%= favorite.post.genre.name %></td>
+            <td class = "text-left"><%= favorite.post.location.name %></td>
+            <td class = "text-left"><%= favorite.post.customer.nickname %></td>
+            <td class = "text-left"><%= favorite.post.customer.gender %></td>
           </tr>
           <% end %>
       </tbody>
     </table>
   </div>
-  <%= paginate @posts %>
+  <%#= paginate @posts %>
 </div>
 </div>

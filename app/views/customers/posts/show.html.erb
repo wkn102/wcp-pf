@@ -33,7 +33,7 @@
             </div>
             <% end %>
             ジャンル:<%= @post.genre.name %><br/>
-            場所:<%= @post.location.name %><br/>
+            エリア:<%= @post.location.name %><br/>
             観光案内文：<br/>
             <%= @post.statement %><br/>
             <% if @post.liked_by?(current_customer) %>

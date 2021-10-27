@@ -26,7 +26,7 @@
             <h4 class="post-text-heading">『<%=  link_to post.name, post_path(post)  %>』</h4>
             <span class="category">ジャンル:<%= post.genre.name %>
               <% if post.location.present? %>
-                /場所:<%= post.location.name %>
+                /エリア:<%= post.location.name %>
               <% end %>
             </span>
             <p class="post-name">投稿者:<%= link_to post.customer.nickname, user_path(post.customer) %> / <%= post.customer.gender %></p>

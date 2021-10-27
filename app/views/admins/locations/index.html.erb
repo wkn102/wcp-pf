@@ -5,11 +5,11 @@
       <table class='table table-hover table-inverse'>
         <thead>
           <tr style="border:none;">
-            <h3><i class="fas fa-search-plus"></i>場所一覧・追加</h3>
+            <h3><i class="fas fa-search-plus"></i>エリア一覧・追加</h3>
 
             <%= form_with model:@location, url:admins_locations_path, local:true do |f| %>
-              <th style="border:none;"><h6>場所名</h6></th>
-              <th style="border:none;"><%= f.text_field :name , placeholder: "場所名" %></th>
+              <th style="border:none;"><h6>エリア名</h6></th>
+              <th style="border:none;"><%= f.text_field :name , placeholder: "エリア名" %></th>
               <th style="border:none;"><%= f.submit '新規登録' ,class: 'btn btn-outline-info'%></th>
             <% end %>
           </tr>
@@ -20,7 +20,7 @@
         <div class = "col-6">
           <table class='table table-hover table-inverse'>
             <tbody>
-              <h5 bgcolor="#dcdcdc">場所</h5></h5>
+              <h5 bgcolor="#dcdcdc">エリア</h5></h5>
                 <% @locations.each do |location| %>
                   <tr>
                     <td><%= location.name %></td>

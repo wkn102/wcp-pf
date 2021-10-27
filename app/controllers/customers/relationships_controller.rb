@@ -1,4 +1,5 @@
 class Customers::RelationshipsController < ApplicationController
+  before_action :authenticate_customer!
 
   def create
     current_customer.follow(params[:user_id])
@@ -11,12 +12,12 @@ class Customers::RelationshipsController < ApplicationController
   end
 
   def followings
-    customer = Customer.find(params[:customer_id])
+    customer = Customer.find(params[:user_id])
     @customers = customer.followings
   end
 
   def followers
-    customer = Customer.find(params[:customer_id])
+    customer = Customer.find(params[:user_id])
     @customers = customer.followers
   end
 

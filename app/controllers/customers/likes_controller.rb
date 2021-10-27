@@ -1,4 +1,5 @@
 class Customers::LikesController < ApplicationController
+  before_action :authenticate_customer!
 
   def top
      @posts = Post.ranking.take(5)  #takeで上位５個を表示という意味、またはtakeじゃなくてlimitでも可能
