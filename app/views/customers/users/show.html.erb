@@ -45,7 +45,7 @@
 
 						<tr>
 							<td bgcolor="#EEEEEE",class="info"><strong>お気に入り数</strong></td>
-							<td class="text-left"><%= @customer.favorites.count %></td>
+							<td class="text-left"><%= link_to @customer.favorites.count, favorites_path %></td>
 						</tr>
 
 						<tr>

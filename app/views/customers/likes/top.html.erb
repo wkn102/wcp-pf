@@ -7,7 +7,7 @@
         <%= form_with url: search_path, method: :get, local: true do |f| %>
           <%= f.text_field 'search[value]', size: "18x3" %><br>
           <span class="search-button col-xs-12 text-right">
-            <%= f.select 'search[how]', options_for_select({ "観光地" => "partical", "投稿者" => "forward", "ジャンル" => "backward", "観光地" => "match" }) %>
+            <%= f.select 'search[how]', options_for_select({ "観光地" => "post", "投稿者" => "customer", "ジャンル" => "genre", "エリア" => "location" }) %>
             <%= f.submit :"検索" %>
           </span>
         <% end %>
@@ -23,7 +23,7 @@
           <% @genres.first(5).each do |genre| %>
           <tr>
             <td>
-              <%= link_to genre.name, search_path('search[value]': genre.id, 'search[how]': "match") %>
+              <%= link_to genre.name, search_path('search[value]': genre.name, 'search[how]': "genre") %>
             </td>
           </tr>
           <% end %>
@@ -40,7 +40,6 @@
       <thead>
         <tr>
           <th bgcolor="#EEEEEE">順位</th>
-           <!-- 同率じゅんい：Ruby group_by -> order, likes_count order by hash key-->
           <th bgcolor="#EEEEEE">観光地名</th>
           <th bgcolor="#EEEEEE">ジャンル</th>
           <th bgcolor="#EEEEEE">ニックネーム</th>
@@ -49,20 +48,19 @@
         </tr>
       </thead>
       <tbody>
-        <% tmp_favorite_count = 0 %>
-        <% rank = 1 %>
-        <% @posts.each.with_index(1) do |post, i| %>
+        <% tmp_favorite_count = 0 %>　<!-- お気に入りを数えるときは０からという意味-->
+        <% rank = 1 %> <!--ランキング１位からっていう意味-->
+        <% @posts.each.with_index(1) do |post, i| %> <!--iは順位の変数-->
           <tr>
             <td>
                <!--同率順位表示-->
-                <% if post.favorites.count == tmp_favorite_count %>
-                  第<%= rank %>位
+                <% if post.favorites.count == tmp_favorite_count %> <!--もしお気に入りの数と数えたお気に入りの数が同じなら-->
+                  第<%= rank %>位 <!--ランキングはそのまま＝同率 -->
                 <% else %>
-                  <% rank = i %>
-                  第<%= rank %>位
+                  <% rank = i %> <!--もし同じじゃないならeachのループ分だけの順位になる-->
+                  第<%= rank %>位　<!--普通に順位更新-->
                 <% end %>
-                <% tmp_favorite_count = post.favorites.count %>
-            <!--td class="text-left"><%#= link_to post.id, post_path(post) , class: "btn btn-info" %></td-->
+                <% tmp_favorite_count = post.favorites.count %> <!--ランキングの度にその時のお気に入りの数を比べ、同じならif違ったらelse-->
             </td>
             <td class="text-left" ><%= link_to post.name, post_path(post) %></td>
             <td class = "text-left"><%= post.genre.name %></td>
@@ -73,7 +71,6 @@
           <% end %>
       </tbody>
       </table>
-      <%#= paginate @posts %>
      </div>
   </div>
 </div>

@@ -20,16 +20,16 @@
 
   <div class="row">
     <% @posts.each do |post|%>
-    <div class="blog-item">
-          <div class="blog-image"><%= attachment_image_tag post, :image ,size: "300x150", fallback: "no_image.jpg", class: "rounded" %></div>
-          <section class="blog-text">
-            <h4 class="blog-text-heading">『<%=  link_to post.name, post_path(post)  %>』</h4>
+    <div class="post-item">
+          <div class="post-image"><%= attachment_image_tag post, :image ,size: "400x200", fallback: "no_image.jpg", class: "rounded" %></div>
+          <section class="post-text">
+            <h4 class="post-text-heading">『<%=  link_to post.name, post_path(post)  %>』</h4>
             <span class="category">ジャンル:<%= post.genre.name %>
               <% if post.location.present? %>
                 /場所:<%= post.location.name %>
               <% end %>
             </span>
-            <p class="blog-name">投稿者:<%= link_to post.customer.nickname, user_path(post.customer) %> / <%= post.customer.gender %></p>
+            <p class="post-name">投稿者:<%= link_to post.customer.nickname, user_path(post.customer) %> / <%= post.customer.gender %></p>
             <% if post.favorited_by?(current_customer) %>
             <p>
               <%= link_to post_favorites_path(post), class: "btn btn-outline-info", method: :delete do %>
