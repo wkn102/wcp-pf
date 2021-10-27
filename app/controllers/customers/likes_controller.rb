@@ -1,7 +1,7 @@
 class Customers::LikesController < ApplicationController
 
   def top
-     @posts = Post.ranking.take(5)  #page(params[:page]).per(5)
+     @posts = Post.ranking.take(5)  #takeで上位５個を表示という意味、またはtakeじゃなくてlimitでも可能
      @genres = Genre.all
   end
 

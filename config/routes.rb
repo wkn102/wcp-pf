@@ -34,6 +34,7 @@ scope module: :customers do
       get 'quit'=>'users#quit'
       get 'out'=>'users#out'
   end
+  resources :favorites,only: [:index]
   resources :genres,only: [:index]
   resources :locations,only: [:index]
   resources :relationships,only: [:index]

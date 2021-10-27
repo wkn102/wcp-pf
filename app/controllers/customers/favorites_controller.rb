@@ -15,4 +15,8 @@ class Customers::FavoritesController < ApplicationController
     redirect_to posts_path
   end
 
+  def index
+    @posts = Post.page(params[:page]).per(10)
+  end
+
 end

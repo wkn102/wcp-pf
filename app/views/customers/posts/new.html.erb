@@ -16,9 +16,9 @@
   　　</div>
 
       <p></p>
-     
+
       <%= form_with model: @post, url:'/posts', local:true do |f| %>
-      
+
       <div class="form-group">
        <label for="Image">商品画像</label>
        <%= f.attachment_field :image %>
@@ -37,7 +37,7 @@
 
       <div class="form-group">
        <%= f.label :location,"場所" %>
-       <%= f.collection_select :locastion_id, Location.all, :id, :name, include_blank: "-- 選択してください --" %>
+       <%= f.collection_select :location_id, Location.all, :id, :name, include_blank: "-- 選択してください --" %>
       </div>
 
       <div class="field" id="star">

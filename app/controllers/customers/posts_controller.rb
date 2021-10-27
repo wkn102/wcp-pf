@@ -1,7 +1,7 @@
 class Customers::PostsController < ApplicationController
 
  def index
-  @posts = Post.page(params[:page]).per(9)
+  @posts = Post.page(params[:page]).per(6)
  end
 
  def new
