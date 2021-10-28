@@ -1,0 +1,39 @@
+ <div class='container'>
+ <div class="row subtitle">
+    <h2><i class="fas fa-user-friends"></i>フォロ一ー覧</h2>
+  </div>
+
+  <p></p>
+
+  <div class="row">
+    <table class="table striped">
+      <thead>
+        <tr>
+          <th bgcolor="#EEEEEE">ニックネーム</th>
+          <th bgcolor="#EEEEEE">性別</th>
+          <th bgcolor="#EEEEEE">退会フラグ</th>
+          <th bgcolor="#EEEEEE">投稿数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer|%>
+        <!--customerのお気にいりでeach文-->
+          <tr>
+            <td class="text-left"><%=link_to customer.nickname, user_path(customer) %></td>
+            <td class="text-left" ><%= customer.gender %></td>
+            <td class = "text-left">
+              <% if customer.is_deleted == true %>
+                <strong class="text-info">退会</strong>
+	            <% else %>
+	              <strong class="text-info">有効</strong>
+	            <% end %>
+            </td>
+            <td class="text-left" ><%= customer.posts.count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%#= paginate @posts %>
+</div>
+</div>

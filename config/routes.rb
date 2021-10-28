@@ -28,7 +28,7 @@ devise_for :customers, controllers: {
 scope module: :customers do
 
   resources :users,only: [:index, :show, :new, :edit, :update] do
-    resource :relationships, only: [:create, :destroy]
+    resource :relationships, only: [:create, :destroy, :index]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
       get 'quit'=>'users#quit'

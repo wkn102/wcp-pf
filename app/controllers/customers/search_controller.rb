@@ -1,4 +1,5 @@
 class Customers::SearchController < ApplicationController
+  before_action :authenticate_customer!
 
   def search
     @value = params["search"]["value"]         #データを代入

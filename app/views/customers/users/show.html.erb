@@ -3,7 +3,7 @@
 	  <div class="row subtitle">
 
       <div class ="col-md-7">
-      	<h4 class="head-line text-center title_h4 subtitle row">登録情報</h4>
+      	<h4><i class="fas fa-user-edit"></i>登録情報</h4>
 
 			<table class="table table-bordered table-condensed" >
 					<tbody>
@@ -36,26 +36,26 @@
 							<td bgcolor="#EEEEEE",class="info"><strong>退会フラグ</strong></td>
 							<td class="text-left">
 								<% if @customer.is_deleted == true %>
-				                  <strong class="text-info">退会</strong>
-					            <% else %>
-					              <strong class="text-info">有効</strong>
-					            <% end %>
+				          <strong class="text-info">退会</strong>
+					      <% else %>
+					        <strong class="text-info">有効</strong>
+					      <% end %>
 							</td>
 						</tr>
 
 						<tr>
 							<td bgcolor="#EEEEEE",class="info"><strong>お気に入り数</strong></td>
-							<td class="text-left"><%= link_to @customer.favorites.count, favorites_path %></td>
+							<td class="text-left"><%= link_to @customer.favorites.count, favorites_path(customer_id: @customer.id) %></td>
 						</tr>
 
 						<tr>
 							<td bgcolor="#EEEEEE",class="info"><strong>フォロー数</strong></td>
-							<td class="text-left"><%= @customer.followings.count %></td>
+							<td class="text-left"><%= link_to @customer.followings.count, user_followings_path(@customer) %></td>
 						</tr>
 
 						<tr>
 							<td bgcolor="#EEEEEE",class="info"><strong>フォロワー数</strong></td>
-							<td class="text-left"><%= @customer.followers.count %></td>
+							<td class="text-left"><%= link_to @customer.followers.count, user_followers_path(@customer) %></td>
 						</tr>
 
 					</tbody>
