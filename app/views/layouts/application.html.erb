@@ -70,16 +70,6 @@
                         </i>
                     <% end %>
                   </li>
-
-                  <!--nav-item>
-                      <div class="d-flex justify-content-end">
-                        <%# if admin_signed_in? %>
-                          <%#= render 'admin/searches/form' %>
-                        <%# else %>
-                          <%#= render 'customer/searches/form' %>
-                        <%# end %>
-                      </div>
-                  </nav-item>
                 </div-->
 
               <!--ユーザーがログインしている場合-->
@@ -131,17 +121,6 @@
                         </i>
                     <% end %>
                   </li>
-
-                  <!--検索窓
-                  <nav-item>
-                      <div class="d-flex justify-content-end">
-                        <%# if admin_signed_in? %>
-                          <%#= render 'admin/searches/form' %>
-                        <%# else %>
-                          <%#= render 'customer/searches/form' %>
-                        <%# end %>
-                      </div>
-                  </nav-item>-->
                 </div>
 
               <!--いずれもログインしていない場合-->
@@ -187,9 +166,9 @@
       </div>
     </div>
 
-      <main class="mt-5 mb-5">
-        <%= yield %>
-      </main>
+    <main class="mt-5 mb-5">
+      <%= yield %>
+    </main>
 
     <div class="wrapper">
       <footer class="footer text-black align-items-center d-flex justify-content-center">
