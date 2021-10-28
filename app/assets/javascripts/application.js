@@ -19,3 +19,116 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery.raty.js
+
+const CLASSNAME = "-visible";
+const TIMEOUT = 1500;
+const $target = $(".title");
+
+// setInterval(() => {
+//   console.log("111");
+//   console.log(CLASSNAME);
+
+//   $target.addClass(CLASSNAME);
+//     console.log( $target);
+//   setTimeout(() => {
+//       console.log("222");
+//     $target.removeClass(CLASSNAME);
+//     // console.log( $target);
+//   }, TIMEOUT);
+// }, TIMEOUT * 2);
+
+setInterval(() => {
+  //$target.addClass(CLASSNAME);
+  const p = document.getElementById("aaa");
+  p.classList.add(CLASSNAME);
+
+  setTimeout(() => {
+    //$target.removeClass(CLASSNAME);
+    p.classList.remove(CLASSNAME)
+    console.log("222");
+  }, TIMEOUT);
+}, TIMEOUT * 2);
+
+setInterval(() => {
+  //$target.addClass(CLASSNAME);
+  const p = document.getElementById("bbb");
+  p.classList.add(CLASSNAME);
+
+  setTimeout(() => {
+    //$target.removeClass(CLASSNAME);
+    p.classList.remove(CLASSNAME)
+    console.log("222");
+  }, TIMEOUT);
+}, TIMEOUT * 2);
+
+setInterval(() => {
+  //$target.addClass(CLASSNAME);
+  const p = document.getElementById("ccc");
+  p.classList.add(CLASSNAME);
+
+  setTimeout(() => {
+    //$target.removeClass(CLASSNAME);
+    p.classList.remove(CLASSNAME)
+    console.log("222");
+  }, TIMEOUT);
+}, TIMEOUT * 2);
+
+setInterval(() => {
+  //$target.addClass(CLASSNAME);
+  const p = document.getElementById("ddd");
+  p.classList.add(CLASSNAME);
+
+  setTimeout(() => {
+    //$target.removeClass(CLASSNAME);
+    p.classList.remove(CLASSNAME)
+    console.log("222");
+  }, TIMEOUT);
+}, TIMEOUT * 2);
+
+setInterval(() => {
+  //$target.addClass(CLASSNAME);
+  const p = document.getElementById("eee");
+  p.classList.add(CLASSNAME);
+
+  setTimeout(() => {
+    //$target.removeClass(CLASSNAME);
+    p.classList.remove(CLASSNAME)
+    console.log("222");
+  }, TIMEOUT);
+}, TIMEOUT * 2);
+
+setInterval(() => {
+  //$target.addClass(CLASSNAME);
+  const p = document.getElementById("fff");
+  p.classList.add(CLASSNAME);
+
+  setTimeout(() => {
+    //$target.removeClass(CLASSNAME);
+    p.classList.remove(CLASSNAME)
+    console.log("222");
+  }, TIMEOUT);
+}, TIMEOUT * 2);
+
+setInterval(() => {
+  //$target.addClass(CLASSNAME);
+  const p = document.getElementById("ggg");
+  p.classList.add(CLASSNAME);
+
+  setTimeout(() => {
+    //$target.removeClass(CLASSNAME);
+    p.classList.remove(CLASSNAME)
+    console.log("222");
+  }, TIMEOUT);
+}, TIMEOUT * 2);
+
+setInterval(() => {
+  //$target.addClass(CLASSNAME);
+  const p = document.getElementById("hhh");
+  p.classList.add(CLASSNAME);
+
+  setTimeout(() => {
+    //$target.removeClass(CLASSNAME);
+    p.classList.remove(CLASSNAME)
+    console.log("222");
+  }, TIMEOUT);
+}, TIMEOUT * 2);
