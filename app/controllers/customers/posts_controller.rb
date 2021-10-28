@@ -41,7 +41,7 @@ class Customers::PostsController < ApplicationController
  end
 
  def destroy
-  @post = Post.find_(id: params[:id])
+  @post = Post.find_by(id: params[:id])
   @post.destroy
   redirect_to posts_path
  end

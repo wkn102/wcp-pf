@@ -27,7 +27,7 @@
             <% if post.favorited_by?(current_customer) %>
             <p>
               <%= link_to post_favorites_path(post), class: "btn btn-outline-info", method: :delete do %>
-               お気に入り ♥<%= post.favorites.count %>
+               お気に入り♥<%= post.favorites.count %>
               <% end %>
             </p>
             <% else %>
