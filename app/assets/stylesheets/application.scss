@@ -16,14 +16,18 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+ @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
+ @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 
-//body {
-  //background-image: url("hoge.jpg");
-//}
+
 
 main {
   padding-bottom: 50px;
 }
+
+//body {
+  //font-family: 'Noto Sans JP', sans-serif;
+//}
 
 // .subtitle {
 //   margin: 30px;
@@ -33,14 +37,6 @@ main {
   margin-bottom: 15px;
 }
 
-//about//
-
-//.about {
-  //background-color: #ADD8E6;
-//}
-
-//About//
-
 //header//
 .header {
   background-color:  #ADD8E6;
@@ -48,15 +44,8 @@ main {
   margin-bottom: 0px;
   padding-bottom: 0px;
 }
-//header//
 
 //footer//
-// .wrapper {
-//   min-height: 100vh;
-//   position: relative;/*←相対位置*/
-//   padding-bottom: 120px;/*←footerの高さ*/
-//   box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
-// }
 
 .footer {
   width: 100%;
@@ -71,7 +60,6 @@ main {
   position: absolute;
   right: 90px;
 }
-//footer//
 
 //post//
 
@@ -137,4 +125,55 @@ main {
 .rank-item {
   margin-right: 110px;
   margin-down: 10px;
+}
+
+
+.title {
+  display: flex;
+  overflow: hidden;
+  color: #000000;
+}
+
+.title span {
+  display: block;
+  transform: translate(0, 105%);
+  transition: transform cubic-bezier(0.215, 0.61, 0.355, 1) 0.5s;
+}
+
+.title.-visible span {
+  transform: translate(0, 0);
+}
+
+.title span:nth-child(2) {
+  transition-delay: 0.06s;
+}
+.title span:nth-child(3) {
+  transition-delay: 0.12s;
+}
+.title span:nth-child(4) {
+  transition-delay: 0.18s;
+}
+.title span:nth-child(5) {
+  transition-delay: 0.24s;
+}
+.title span:nth-child(6) {
+  transition-delay: 0.30s;
+}
+.title span:nth-child(7) {
+  transition-delay: 0.36s;
+}
+.title span:nth-child(8) {
+  transition-delay: 0.42s;
+}
+.title span:nth-child(9) {
+  transition-delay: 0.48s;
+}
+.title span:nth-child(10) {
+  transition-delay: 0.54s;
+}
+
+/****** Base style. ******/
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-color: #000000;
 }

@@ -52,6 +52,7 @@
             <% if @customer.id == current_customer.id %>
               <%=link_to '編集', edit_post_path, class: "btn btn-outline-info" %>
             <% end %>
+            <%=link_to 'Googleマップ検索ページへ', locations_path, class: "btn btn-outline-info" %>
            </th>
        </tr>
       </table>
