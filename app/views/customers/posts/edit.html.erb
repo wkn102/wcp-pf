@@ -44,9 +44,9 @@
           <script>
             $('#star').raty({
               size     : 36,
-              starOff:  '<%= image_tag asset_path('star-off.png') %>',
-              starOn : '<%= image_tag asset_path('star-on.png') %>',
-              starHalf: '<%= image_tag asset_path('star-half.png') %>',
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
               scoreName: 'post[evaluation]',   //evaluationカラムへの保存
               half: true,   //星半分の入力
             });
