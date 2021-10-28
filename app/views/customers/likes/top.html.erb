@@ -33,44 +33,61 @@
 
     <div class='col-1'></div>
 
-    <div class="col-md-9">
+    <div class="col-md-5">
     <h2 style="display: inline;"><i class="fas fa-medal"></i>投稿ランキング</h2>
     <p></p>
+    
+    <div class="row">
+      <% tmp_favorite_count = 0 %> <!-- お気に入りを数えるときは０からという意味-->
+      <% rank = 1 %> <!--ランキング１位からっていう意味-->
+        <% @posts.each.with_index(1) do |post, i| %>
+        <div class="rank-item">
+            <!--同率順位表示-->
+            <% if post.favorites.count == tmp_favorite_count %> <!--もしお気に入りの数と数えたお気に入りの数が同じなら-->
+              <h3><i class="fas fa-crown"></i>第<%= rank %>位</h3> <!--ランキングはそのまま＝同率 -->
+            <% else %>
+              <% rank = i %> <!--もし同じじゃないならeachのループ分だけの順位になる-->
+              <h3><i class="fas fa-crown"></i>第<%= rank %>位</h3> <!--普通に順位更新-->
+            <% end %>
+            <% tmp_favorite_count = post.favorites.count %> <!--ランキングの度にその時のお気に入りの数を比べ、同じならif違ったらelse-->
+          <div class="rank-image"><%= attachment_image_tag post, :image ,size: "400x200", fallback: "no_image.jpg", class: "rounded" %></div>
+          <section class="rank-text">
+          <h4 class="post-text-heading">『<%=  link_to post.name, post_path(post)  %>』</h4>
+            <span class="category">ジャンル:<%= post.genre.name %><br/>
+              <% if post.location.present? %>
+                エリア:<%= post.location.name %>
+              <% end %>
+            </span>
+            <p class="post-name">投稿者:<%= link_to post.customer.nickname, user_path(post.customer) %> / <%= post.customer.gender %></p>
+          </section>
+      </div>
+      <% end %>
+    </div>
+    </div>
+
+    <div class="col-md-4">
+    <h2><i class="fas fa-external-link-alt"></i>最新投稿</h2>
+    <p></p>
+    
+    <div class="row">
     <table class="table striped">
       <thead>
         <tr>
-          <th bgcolor="#EEEEEE">順位</th>
           <th bgcolor="#EEEEEE">観光地名</th>
-          <th bgcolor="#EEEEEE">ジャンル</th>
-          <th bgcolor="#EEEEEE">ニックネーム</th>
+          <th bgcolor="#EEEEEE">投稿者</th>
           <th bgcolor="#EEEEEE">更新日</th>
-          <th bgcolor="#EEEEEE">お気に入り数</th>
         </tr>
       </thead>
+      <% @post.each do |post|%>
       <tbody>
-        <% tmp_favorite_count = 0 %>　<!-- お気に入りを数えるときは０からという意味-->
-        <% rank = 1 %> <!--ランキング１位からっていう意味-->
-        <% @posts.each.with_index(1) do |post, i| %> <!--iは順位の変数-->
-          <tr>
-            <td>
-               <!--同率順位表示-->
-                <% if post.favorites.count == tmp_favorite_count %> <!--もしお気に入りの数と数えたお気に入りの数が同じなら-->
-                  第<%= rank %>位 <!--ランキングはそのまま＝同率 -->
-                <% else %>
-                  <% rank = i %> <!--もし同じじゃないならeachのループ分だけの順位になる-->
-                  第<%= rank %>位　<!--普通に順位更新-->
-                <% end %>
-                <% tmp_favorite_count = post.favorites.count %> <!--ランキングの度にその時のお気に入りの数を比べ、同じならif違ったらelse-->
-            </td>
             <td class="text-left" ><%= link_to post.name, post_path(post) %></td>
-            <td class = "text-left"><%= post.genre.name %></td>
-            <td class = "text-left"><%= post.customer.nickname %></td>
+            <td class="text-left" ><%= link_to post.customer.nickname, user_path(post.customer) %></td>
             <td class = "text-left"><%= post.updated_at.strftime('%Y/%m/%d')%></td>
-            <td class = "text-left"><%= post.favorites.count %></td>
-          </tr>
-          <% end %>
       </tbody>
+      <% end %>
       </table>
      </div>
   </div>
+</div>
+</div>
 </div>

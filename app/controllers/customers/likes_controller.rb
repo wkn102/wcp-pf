@@ -4,6 +4,7 @@ class Customers::LikesController < ApplicationController
   def top
      @posts = Post.ranking.take(5)  #takeで上位５個を表示という意味、またはtakeじゃなくてlimitでも可能
      @genres = Genre.all
+     @post = Post.order(created_at: :desc).limit(10)
   end
 
   def about

@@ -24,9 +24,9 @@
           <div class="post-image"><%= attachment_image_tag post, :image ,size: "400x200", fallback: "no_image.jpg", class: "rounded" %></div>
           <section class="post-text">
             <h4 class="post-text-heading">『<%=  link_to post.name, post_path(post)  %>』</h4>
-            <span class="category">ジャンル:<%= post.genre.name %>
+            <span class="category">ジャンル:<%= post.genre.name %><br/>
               <% if post.location.present? %>
-                /エリア:<%= post.location.name %>
+                エリア:<%= post.location.name %>
               <% end %>
             </span>
             <p class="post-name">投稿者:<%= link_to post.customer.nickname, user_path(post.customer) %> / <%= post.customer.gender %></p>
