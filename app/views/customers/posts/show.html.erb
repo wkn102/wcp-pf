@@ -36,16 +36,17 @@
             エリア:<%= @post.location.name %><br/>
             観光案内文：<br/>
             <%= @post.statement %><br/>
+            <p></p>
             <% if @post.liked_by?(current_customer) %>
             <p>
-              <%= link_to post_likes_path(@post), method: :delete do %>
-               役に立った❗️<%= @post.likes.count %>
+              <%= link_to post_likes_path(@post), class: "btn btn-info", method: :delete do %>
+               いいね🖤️<%= @post.likes.count %>
               <% end %>
             </p>
             <% else %>
             <p>
-              <%= link_to post_likes_path(@post), method: :post do %>
-                役に立った❕<%= @post.likes.count %>
+              <%= link_to post_likes_path(@post), class: "btn btn-outline-info", method: :post do %>
+               いいね🤍<%= @post.likes.count %>
               <% end %>
             </p>
             <% end %>
