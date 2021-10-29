@@ -39,8 +39,8 @@ scope module: :customers do
   resources :locations,only: [:index]
   resources :relationships,only: [:index]
   resources :posts do
-        resource :favorites, only: [:create, :destroy]
-        resource :likes,only: [:create, :destroy]
+    resource :favorites,only: [:create, :destroy]
+    resource :likes,only: [:create, :destroy]
   end
 
   get '/search' => 'search#search'

@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   belongs_to :genre
   belongs_to :location
 
-  scope :ranking, -> { left_joins(:favorites).group("posts.id").select("posts.*, COUNT(favorites.id) AS favorite_count").order("favorite_count desc") }
+  scope :ranking, -> { left_joins(:likes).group("posts.id").select("posts.*, COUNT(likes.id) AS like_count").order("like_count desc") }
 
    attachment :image
 
