@@ -14,13 +14,14 @@
 
 
 ### ターゲットユーザ
-観光客はもちろん首都圏等に住んでいて都内へよく出かける方
+観光客はもちろん首都圏等に住んでいて都内へよく出かける方、旅行好きの方
 
 ### 主な利用シーン
 都内に出かけるとき
 
 ## 設計書
-<img width="343" alt="DWC-PF ER図　スクショ" src="https://user-images.githubusercontent.com/87749004/136033618-11e04163-7456-430a-a2ef-068cbebaae8b.png">
+<img width="792" alt="スクリーンショット 2021-10-29 13 43 58" src="https://user-images.githubusercontent.com/87749004/139377125-f7a8df7c-27e9-4a63-aac4-1c4a3eccddfa.png">
+
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1LxJUSMTHkGQpNa-4XqkmzkvLc9eCTVf4XB-7Qh30T5I/edit?usp=sharing
