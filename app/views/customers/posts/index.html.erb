@@ -24,21 +24,21 @@
               <% end %>
             </span>
             <p class="post-name">投稿者:<%= link_to post.customer.nickname, user_path(post.customer) %> / <%= post.customer.gender %></p>
-              <% if post.favorited_by?(current_customer) %>
-                <p>
-                  <%= link_to post_favorites_path(post), class: "btn btn-info", method: :delete do %>
+              <%# if post.favorited_by?(current_customer) %>
+                <!--p>
+                  <%#= link_to post_favorites_path(post), class: "btn btn-info", method: :delete do %>
                    <i class="fas fa-bookmark"></i>ブックマーク済
-                  <% end %>
+                  <%# end %>
                 </p>
-              <% else %>
+              <%# else %>
                 <p>
-                  <%= link_to post_favorites_path(post), class: "btn btn-outline-info", method: :post do %>
+                  <%#= link_to post_favorites_path(post), class: "btn btn-outline-info", method: :post do %>
                    <i class="far fa-bookmark"></i>ブックマーク
-                 <% end %>
-                </p>
-              <% end %>
+                 <%# end %>
+                </p-->
+              <%# end %>
           </section>
-        </div>
+    </div>
     <% end %>
   </div>
 <%= paginate @posts %>
